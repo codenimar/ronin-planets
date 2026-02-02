@@ -1,0 +1,104 @@
+.planet-card {
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+
+.planet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: var(--planet-gradient);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.planet-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.planet-icon {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.planet-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.planet-info {
+  position: relative;
+  z-index: 1;
+}
+
+.planet-name {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.planet-resource {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.planet-description {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.planet-knowledge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.knowledge-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.knowledge-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .planet-icon {
+    font-size: 4rem;
+  }
+
+  .planet-name {
+    font-size: 1.25rem;
+  }
+
+  .planet-resource {
+    font-size: 1rem;
+  }
+
+  .planet-description {
+    font-size: 0.9rem;
+  }
+}

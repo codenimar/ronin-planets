@@ -1,0 +1,149 @@
+.mine {
+  padding: 1.5rem 0;
+}
+
+.mine-header {
+  margin-bottom: 2rem;
+}
+
+.mine-header h3 {
+  margin-bottom: 0.5rem;
+}
+
+.mine-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mining-stats {
+  padding: 1.5rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.mining-info {
+  padding: 1.5rem;
+}
+
+.mining-info h4 {
+  margin-bottom: 1rem;
+  color: var(--accent-cyan);
+}
+
+.mining-info p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.mining-info p:last-child {
+  margin-bottom: 0;
+}
+
+.cooldown-display {
+  padding: 2rem;
+  text-align: center;
+}
+
+.cooldown-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.cooldown-message span:first-child {
+  font-size: 1.5rem;
+}
+
+.cooldown-timer {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.btn-mine {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn-mine .spinner {
+  width: 20px;
+  height: 20px;
+  border-top-color: var(--bg-primary);
+}
+
+.current-inventory {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.current-inventory h4 {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.inventory-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.amount-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.amount-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .mining-stats,
+  .mining-info {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1rem;
+  }
+
+  .cooldown-display {
+    padding: 1.5rem;
+  }
+
+  .amount-value {
+    font-size: 2rem;
+  }
+}
