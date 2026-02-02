@@ -12,7 +12,7 @@ const PlanetDetail = () => {
   const { planetId } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { nfts, userData } = useGame();
+  const { nfts } = useGame();
   const { address } = useWallet();
   const [activeTab, setActiveTab] = useState('laboratory');
 

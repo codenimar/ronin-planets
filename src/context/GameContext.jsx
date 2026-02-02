@@ -1,43 +1,26 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useWallet } from './WalletContext';
 import { fetchUserNFTs } from '../services/nftService';
 import { 
   initUserData, 
   getUserData, 
   updateUserData,
-  getStorageData 
 } from '../utils/storage';
 import { ADMIN_ADDRESS } from '../utils/constants';
 import { isAdmin } from '../utils/helpers';
 
 const GameContext = createContext();
 
-export const useGame = () => {
-  const context = useContext(GameContext);
-  if (!context) {
-    throw new Error('useGame must be used within GameProvider');
-  }
-  return context;
-};
-
-export const GameProvider = ({ children }) => {
+const GameProvider = ({ children }) => {
   const { address, isConnected } = useWallet();
   const [nfts, setNfts] = useState([]);
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch NFTs and initialize user data when wallet connects
-  useEffect(() => {
-    if (isConnected && address) {
-      loadUserData();
-    } else {
-      setNfts([]);
-      setUserData(null);
-    }
-  }, [isConnected, address]);
-
-  const loadUserData = async () => {
+  const loadUserData = useCallback(async () => {
+    if (!address) return;
+    
     setIsLoading(true);
     setError(null);
 
@@ -55,7 +38,17 @@ export const GameProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [address]);
+
+  // Fetch NFTs and initialize user data when wallet connects
+  useEffect(() => {
+    if (isConnected && address) {
+      loadUserData();
+    } else {
+      setNfts([]);
+      setUserData(null);
+    }
+  }, [isConnected, address, loadUserData]);
 
   const refreshUserData = () => {
     if (address) {
@@ -93,4 +86,13 @@ export const GameProvider = ({ children }) => {
       {children}
     </GameContext.Provider>
   );
+};
+
+export { GameProvider };
+export const useGame = () => {
+  const context = useContext(GameContext);
+  if (!context) {
+    throw new Error('useGame must be used within GameProvider');
+  }
+  return context;
 };

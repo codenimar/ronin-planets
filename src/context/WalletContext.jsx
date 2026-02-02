@@ -3,15 +3,7 @@ import { connectRoninWallet, connectMetaMask, detectWallet, getCurrentAccount, d
 
 const WalletContext = createContext();
 
-export const useWallet = () => {
-  const context = useContext(WalletContext);
-  if (!context) {
-    throw new Error('useWallet must be used within WalletProvider');
-  }
-  return context;
-};
-
-export const WalletProvider = ({ children }) => {
+const WalletProvider = ({ children }) => {
   const [address, setAddress] = useState(null);
   const [walletType, setWalletType] = useState(null);
   const [provider, setProvider] = useState(null);
@@ -137,4 +129,13 @@ export const WalletProvider = ({ children }) => {
       {children}
     </WalletContext.Provider>
   );
+};
+
+export { WalletProvider };
+export const useWallet = () => {
+  const context = useContext(WalletContext);
+  if (!context) {
+    throw new Error('useWallet must be used within WalletProvider');
+  }
+  return context;
 };

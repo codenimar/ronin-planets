@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { getCooldownRemaining } from '../../utils/helpers';
 
 const CooldownTimer = ({ cooldownEnd, onComplete }) => {
-  const [cooldown, setCooldown] = useState(getCooldownRemaining(cooldownEnd));
+  const [cooldown, setCooldown] = useState(() => getCooldownRemaining(cooldownEnd));
 
   useEffect(() => {
     if (!cooldownEnd) {
-      setCooldown({ hours: 0, minutes: 0, seconds: 0, isActive: false });
       return;
     }
 

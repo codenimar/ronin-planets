@@ -71,7 +71,7 @@ export const fetchUserNFTs = async (address) => {
     if (error.message.includes('could not detect network') || 
         error.message.includes('Could not create provider')) {
       console.warn('Using mock NFTs for development');
-      return getMockNFTs(address);
+      return getMockNFTs();
     }
     
     throw error;
@@ -81,7 +81,7 @@ export const fetchUserNFTs = async (address) => {
 /**
  * Get mock NFTs for testing (when blockchain is not available)
  */
-const getMockNFTs = (address) => {
+const getMockNFTs = () => {
   // Generate 3 mock NFTs for testing
   return [
     {
