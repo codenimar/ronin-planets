@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { format, subDays } from 'date-fns';
 import btcPriceService from '../../services/btcPriceService';
@@ -20,14 +20,7 @@ const BtcChart = () => {
     setStartDate(format(thirtyDaysAgo, 'yyyy-MM-dd'));
   }, []);
 
-  // Automatically load data when dates change
-  useEffect(() => {
-    if (startDate && endDate) {
-      handleFetchData();
-    }
-  }, [startDate, endDate]);
-
-  const handleFetchData = async () => {
+  const handleFetchData = useCallback(async () => {
     setError('');
     
     const start = new Date(startDate);
@@ -45,13 +38,21 @@ const BtcChart = () => {
     try {
       const data = await btcPriceService.fetchPriceHistory(start, end);
       setPriceData(data);
+      setError(''); // Clear any previous errors if data loads successfully
     } catch (err) {
       setError(err.message);
       setPriceData([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [startDate, endDate]);
+
+  // Automatically load data when dates change
+  useEffect(() => {
+    if (startDate && endDate) {
+      handleFetchData();
+    }
+  }, [startDate, endDate, handleFetchData]);
 
   const formatPrice = (value) => {
     return `$${value.toLocaleString()}`;
