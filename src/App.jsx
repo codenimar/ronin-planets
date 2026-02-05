@@ -11,6 +11,7 @@ import PlanetDetail from './components/Planets/PlanetDetail';
 import Factory from './components/Factory/Factory';
 import RewardsList from './components/Rewards/RewardsList';
 import AdminPanel from './components/Admin/AdminPanel';
+import BtcChart from './components/BtcChart/BtcChart';
 import './styles/global.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/factory" element={<Factory />} />
                 <Route path="/rewards" element={<RewardsList />} />
                 <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/btc-chart" element={<BtcChart />} />
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
