@@ -46,6 +46,12 @@ const Navbar = () => {
             >
               Rewards
             </Link>
+            <Link 
+              to="/btc-chart" 
+              className={`navbar-link ${isActive('/btc-chart') ? 'active' : ''}`}
+            >
+              📈 BTC Chart
+            </Link>
             {isAdmin && (
               <Link 
                 to="/admin" 
