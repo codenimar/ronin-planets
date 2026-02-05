@@ -1,16 +1,72 @@
-# React + Vite
+# Bitcoin Price Chart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that displays Bitcoin price data in an interactive chart.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time Bitcoin price tracking
+- 30-day historical price chart
+- Key statistics: Current price, High, Low, Average, and 30-day percentage change
+- Auto-refresh every 5 minutes
+- Responsive design with modern UI
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - UI library
+- **Vite** - Build tool and dev server
+- **Recharts** - Chart visualization library
+- **Axios** - HTTP client for API calls
+- **CoinGecko API** - Bitcoin price data source
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Usage
+
+The app will be available at `http://localhost:5173` after running `npm run dev`.
+
+The application automatically fetches Bitcoin price data from the CoinGecko API and displays:
+- Current Bitcoin price in USD
+- 30-day price change percentage
+- Highest and lowest prices in the period
+- Average price over 30 days
+- Interactive area chart showing price trends
+
+## Project Structure
+
+```
+ronin-planets/
+├── src/
+│   ├── App.jsx          # Main app component
+│   ├── App.css          # Application styles
+│   ├── BitcoinChart.jsx # Bitcoin chart component
+│   └── main.jsx         # Entry point
+├── public/              # Static assets
+├── index.html           # HTML template
+├── package.json         # Dependencies
+└── vite.config.js       # Vite configuration
+```
+
+## API
+
+Uses the CoinGecko API endpoint:
+```
+https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily
+```
+
+## License
+
+MIT
